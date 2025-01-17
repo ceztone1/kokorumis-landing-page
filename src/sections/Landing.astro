@@ -1,0 +1,73 @@
+---
+
+---
+
+<section class="flex flex-row items-center justify-around gap-4 py-4 mt-20">
+  <img
+    class="rounded-2xl appear"
+    src="/src/assets/calcifer.webp"
+    alt="Calcifer Image"
+    width="30%"
+  />
+  <img
+    class="rounded-2xl absolute star-movement"
+    src="/src/assets/star.png"
+    alt="Calcifer Image"
+    width="5%"
+  />
+  <img
+    class="rounded-2xl absolute right-1 bottom-20 star-movement"
+    src="/src/assets/star.png"
+    alt="Calcifer Image"
+    width="5%"
+  />
+  <p class="flex flex-col items-center gap-4 text-white appear">
+    <span class="text-8xl font-Chewy text-white">Make it posible!</span>
+    <span class="text-4xl font-Chewy text-white">Crafts & crochet</span>
+  </p>
+</section>
+<style>
+  .star-movement {
+    animation:
+      appear 1s,
+      star-movement 2s infinite;
+  }
+  @keyframes star-movement {
+    0% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+
+    55% {
+      -webkit-transform: rotate(0.1turn);
+      transform: rotate(0.1turn);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+
+    100% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+      -webkit-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+  }
+  .appear {
+    animation-name: appear;
+    animation-duration: 1s;
+  }
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(-100px);
+      transform: translateY(-100px);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
+</style>

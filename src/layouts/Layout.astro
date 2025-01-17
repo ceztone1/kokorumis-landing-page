@@ -1,22 +1,45 @@
+---
+import Header from "../sections/Header.astro";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="relative headerColor">
+    <Header />
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .headerColor {
+    background: radial-gradient(
+      circle,
+      rgb(254, 129, 26) 0%,
+      rgba(252, 176, 69, 1) 20%,
+      rgba(253, 29, 248, 1) 70%,
+      rgba(58, 122, 180, 1) 90%
+    );
+
+    background-position: 50% 0; /* Centra el gradiente en la parte superior */
+    /* Recorta para mostrar solo la mitad superior */
+  }
 </style>
