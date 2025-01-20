@@ -6,6 +6,11 @@ export default {
       fontFamily: {
         Chewy: ["Chewy", "system-ui", "sans-serif"],
       },
+      colors: {
+        headerColor: "#f8bbd0",
+        kokorumis: "#fff59d",
+        fontColor: "rgb(126, 69, 109)",
+      },
     },
   },
   plugins: [],
