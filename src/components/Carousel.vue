@@ -39,7 +39,8 @@ const thumbnailsConfig = computed(() => {
   return {
     itemsToShow: screenWidth.value > _LG ? 6 : 3,
     wrapAround: true,
-    touchDrag: false,
+    touchDrag: true,
+    mouseDrag: false,
     gap: 10,
     height: screenWidth.value > _LG ? 200 : 100,
   };
@@ -51,7 +52,7 @@ const galleryConfig = computed(() => {
     wrapAround: true,
     slideEffect: "fade",
     mouseDrag: false,
-    touchDrag: false,
+    touchDrag: true,
     height: screenWidth.value > _LG ? 600 : 350,
     autoplay: 4000,
   };
