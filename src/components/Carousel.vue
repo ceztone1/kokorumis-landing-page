@@ -2,7 +2,11 @@
   <div class="carousel-container flex flex-col p-6 appear2">
     <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide">
       <Slide class="slide" v-for="(image, index) in images" :key="index">
-        <img :src="image" alt="Gallery Image" class="gallery-image" />
+        <img
+          :src="image"
+          alt="Gallery Image"
+          class="w-[90%] h-full lg:object-cover lg:w-[50%] lg:h-full"
+        />
       </Slide>
     </Carousel>
 
@@ -25,27 +29,33 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import "vue3-carousel/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 const currentSlide = ref(0);
-const thumbnailsConfig = {
-  itemsToShow: 6,
-  wrapAround: true,
-  touchDrag: false,
-  gap: 10,
-  height: 200,
-};
+const screenWidth = ref(window.innerWidth);
+const _LG = 1024;
+const thumbnailsConfig = computed(() => {
+  return {
+    itemsToShow: screenWidth.value > _LG ? 6 : 3,
+    wrapAround: true,
+    touchDrag: false,
+    gap: 10,
+    height: screenWidth.value > _LG ? 200 : 100,
+  };
+});
 
-const galleryConfig = {
-  itemsToShow: 1,
-  wrapAround: true,
-  slideEffect: "fade",
-  mouseDrag: false,
-  touchDrag: false,
-  height: 600,
-  autoplay: 4000,
-};
+const galleryConfig = computed(() => {
+  return {
+    itemsToShow: 1,
+    wrapAround: true,
+    slideEffect: "fade",
+    mouseDrag: false,
+    touchDrag: false,
+    height: screenWidth.value > _LG ? 600 : 350,
+    autoplay: 4000,
+  };
+});
 
 const images = ref([
   "img/image1.webp",
@@ -57,7 +67,14 @@ const images = ref([
 
 const slideTo = (nextSlide) => (currentSlide.value = nextSlide);
 
-onMounted(() => {});
+const updateDimensions = () => {
+  screenWidth.value = window.innerWidth;
+};
+
+onMounted(() => {
+  console.log("se monto");
+  window.addEventListener("resize", updateDimensions);
+});
 </script>
 <style scoped>
 :root {
@@ -71,8 +88,6 @@ onMounted(() => {});
 
 img {
   border-radius: 8px;
-  width: 100%;
-  height: 100%;
 }
 
 .thumbnail-image {
@@ -97,8 +112,6 @@ img {
 }
 .gallery-image {
   object-fit: cover;
-  width: 30%;
-  height: 100%;
 }
 
 .appear2 {
@@ -115,6 +128,13 @@ img {
     opacity: 1;
     -webkit-transform: translateY(0);
     transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:text-8xl {
+    font-size: 6rem /* 96px */;
+    line-height: 1;
   }
 }
 </style>

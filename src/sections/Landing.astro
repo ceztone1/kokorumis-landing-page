@@ -6,26 +6,26 @@ import Carousel from "../components/Carousel.vue";
 ---
 
 <section
-  class="flex md:flex-sm flex-col-reverse md:flex-row items-center justify-around gap-4 py-4 mt-10"
+  class="flex flex-col-reverse lg:flex-row items-center justify-around gap-4 py-4 mt-10"
 >
-  <Carousel client:load class="w-full md:w-[60%]" />
-  <div class="relative lading-container w-full md:w-[40%]">
+  <Carousel client:only class="w-full md:w-[50%]" />
+  <div class="relative lading-container w-full md:w-[50%]">
     <Image
-      class="rounded-2xl absolute rigth-[-80px] top-[-50px] star-movement"
+      class="rounded-2xl absolute rigth-[-80px] top-[-50px] star-movement w-[60px] sm:w-[100px]"
       loading="eager"
       src={star}
       alt="Star"
-      width={100}
     />
     <Image
-      class="rounded-2xl absolute right-10 bottom-0 star-movement"
+      class="rounded-2xl absolute right-10 bottom-0 star-movement w-[60px] sm:w-[100px]"
       loading="eager"
       src={star}
       alt="Star"
-      width={100}
     />
     <p class="flex flex-col items-center gap-4 text-fontColor appear">
-      <span class="text-8xl font-Chewy text-fontColor">Make it posible!</span>
+      <span class="text-6xl md:text-8xl font-Chewy text-fontColor"
+        >Make it posible!</span
+      >
       <span class="text-4xl font-Chewy text-fontColor">Crafts & crochet</span>
     </p>
   </div>
