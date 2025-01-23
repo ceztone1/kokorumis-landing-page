@@ -2,36 +2,33 @@
 import { Image } from "astro:assets";
 import star from "../../public/img/star.png";
 import melody from "../../public/img/melody.webp";
+import Carousel from "../components/Carousel.vue";
 ---
 
-<section class="flex flex-row items-center justify-around gap-4 py-4 mt-10">
-  <Image
-    class="rounded-2xl appear"
-    loading="eager"
-    src={melody}
-    alt="Melody"
-    height={500}
-  />
-
-  <Image
-    class="rounded-2xl absolute star-movement"
-    loading="eager"
-    src={star}
-    alt="Star"
-    width={100}
-  />
-  <Image
-    class="rounded-2xl absolute right-1 top-[500px] star-movement"
-    loading="eager"
-    src={star}
-    alt="Star"
-    width={100}
-  />
-
-  <p class="flex flex-col items-center gap-4 text-fontColor appear">
-    <span class="text-8xl font-Chewy text-fontColor">Make it posible!</span>
-    <span class="text-4xl font-Chewy text-fontColor">Crafts & crochet</span>
-  </p>
+<section
+  class="flex md:flex-sm flex-col-reverse md:flex-row items-center justify-around gap-4 py-4 mt-10"
+>
+  <Carousel client:load class="w-full md:w-[60%]" />
+  <div class="relative lading-container w-full md:w-[40%]">
+    <Image
+      class="rounded-2xl absolute rigth-[-80px] top-[-50px] star-movement"
+      loading="eager"
+      src={star}
+      alt="Star"
+      width={100}
+    />
+    <Image
+      class="rounded-2xl absolute right-10 bottom-0 star-movement"
+      loading="eager"
+      src={star}
+      alt="Star"
+      width={100}
+    />
+    <p class="flex flex-col items-center gap-4 text-fontColor appear">
+      <span class="text-8xl font-Chewy text-fontColor">Make it posible!</span>
+      <span class="text-4xl font-Chewy text-fontColor">Crafts & crochet</span>
+    </p>
+  </div>
 </section>
 <style>
   .star-movement {
