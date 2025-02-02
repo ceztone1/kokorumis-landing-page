@@ -1,77 +1,95 @@
 ---
-import { Image } from "astro:assets";
-import star from "../../public/img/star.png";
-import melody from "../../public/img/melody.webp";
-import Carousel from "../components/Carousel.vue";
+import { Image } from 'astro:assets';
+import star from '../../public/img/star.png';
+import melody from '../../public/img/melody.webp';
+import Carousel from '../components/Carousel.vue';
 ---
 
 <section
-  class="flex flex-col-reverse lg:flex-row items-center justify-around gap-4 py-4 mt-10"
+  class="mt-[100px] flex flex-col-reverse items-center justify-around gap-4 py-4 lg:flex-row"
 >
   <Carousel client:only class="w-full md:w-[50%]" />
-  <div class="relative lading-container w-full md:w-[50%]">
+  <div class="lading-container relative w-full md:w-[50%]">
     <Image
-      class="rounded-2xl absolute rigth-[-80px] top-[-50px] star-movement w-[60px] sm:w-[100px]"
+      class="rigth-[-80px] star-movement absolute top-[-50px] w-[60px] rounded-2xl sm:w-[100px]"
       loading="eager"
       src={star}
       alt="Star"
     />
     <Image
-      class="rounded-2xl absolute right-10 bottom-0 star-movement w-[60px] sm:w-[100px]"
+      class="star-movement absolute bottom-10 right-10 w-[60px] rounded-2xl sm:w-[100px]"
       loading="eager"
       src={star}
       alt="Star"
     />
-    <p class="flex flex-col items-center gap-4 text-fontColor appear">
-      <span class="text-6xl md:text-8xl font-Chewy text-fontColor"
+
+    <p class="appear flex flex-col items-center gap-4 text-fontColor">
+      <span class="font-Chewy text-6xl text-fontColor md:text-8xl"
         >Make it posible!</span
       >
-      <span class="text-4xl font-Chewy text-fontColor">Crafts & crochet</span>
+      <span class="font-Chewy text-4xl text-fontColor">Crafts & crochet</span>
     </p>
+    <div
+      class="mt-20 flex flex-col items-center justify-center gap-4 md:hidden"
+    >
+      <button
+        class="before:ease hover:before:-translate-x- relative h-12 w-40 overflow-hidden rounded-full border border-fontColor bg-fontColor font-Chewy text-sm text-white shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-fontColor hover:before:-translate-x-40"
+      >
+        Cotizador de precio
+      </button>
+    </div>
+    <div class="mt-20 hidden flex-col items-center gap-4 md:flex">
+      <button
+        class="before:ease relative h-16 w-80 overflow-hidden rounded-full border border-fontColor bg-fontColor font-Chewy text-lg text-white shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-16 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-fontColor hover:before:-translate-x-80"
+      >
+        Cotizador de precio
+      </button>
+    </div>
   </div>
+
+  <style>
+    .star-movement {
+      animation:
+        appear 1s,
+        star-movement 2s infinite;
+    }
+    @keyframes star-movement {
+      0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+      }
+
+      55% {
+        -webkit-transform: rotate(0.1turn);
+        transform: rotate(0.1turn);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+      }
+
+      100% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+      }
+    }
+    .appear {
+      animation-name: appear;
+      animation-duration: 1s;
+    }
+    @keyframes appear {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100px);
+        transform: translateY(-100px);
+      }
+      100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+      }
+    }
+  </style>
 </section>
-<style>
-  .star-movement {
-    animation:
-      appear 1s,
-      star-movement 2s infinite;
-  }
-  @keyframes star-movement {
-    0% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-      -webkit-animation-timing-function: ease-in;
-      animation-timing-function: ease-in;
-    }
-
-    55% {
-      -webkit-transform: rotate(0.1turn);
-      transform: rotate(0.1turn);
-      -webkit-animation-timing-function: ease-in;
-      animation-timing-function: ease-in;
-    }
-
-    100% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-      -webkit-animation-timing-function: ease-in;
-      animation-timing-function: ease-in;
-    }
-  }
-  .appear {
-    animation-name: appear;
-    animation-duration: 1s;
-  }
-  @keyframes appear {
-    0% {
-      opacity: 0;
-      -webkit-transform: translateY(-100px);
-      transform: translateY(-100px);
-    }
-    100% {
-      opacity: 1;
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-    }
-  }
-</style>
