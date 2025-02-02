@@ -3,8 +3,8 @@
     <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide">
       <Slide class="slide" v-for="(image, index) in images" :key="index">
         <img
-          :src="image"
-          alt="Gallery Image"
+          :src="image.src"
+          :alt="image.alt"
           class="w-[90%] h-full lg:object-cover lg:w-[50%] lg:h-full"
         />
       </Slide>
@@ -17,7 +17,7 @@
             :class="['thumbnail', { 'is-active': isActive }]"
             @click="slideTo(currentIndex)"
           >
-            <img :src="image" alt="Thumbnail Image" class="thumbnail-image" />
+            <img :src="image.src" :alt="image.alt" class="thumbnail-image" />
           </div>
         </template>
       </Slide>
@@ -59,11 +59,11 @@ const galleryConfig = computed(() => {
 });
 
 const images = ref([
-  "img/image1.webp",
-  "img/image2.webp",
-  "img/image3.webp",
-  "img/image4.webp",
-  "img/image5.webp",
+  { src: "img/image1.webp", alt: "Flower PC" },
+  { src: "img/image2.webp", alt: "Flower Zoom 1" },
+  { src: "img/image3.webp", alt: "Flower Zoom 2" },
+  { src: "img/image4.webp", alt: "Flower Zoom 3" },
+  { src: "img/image5.webp", alt: "Flower Zoom 4" },
 ]);
 
 const slideTo = (nextSlide) => (currentSlide.value = nextSlide);
