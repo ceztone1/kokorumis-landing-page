@@ -1,11 +1,11 @@
 <template>
-  <div class="carousel-container flex flex-col p-6 appear2">
+  <div class="carousel-container appear2 flex flex-col p-6">
     <Carousel id="gallery" v-bind="galleryConfig" v-model="currentSlide">
       <Slide class="slide" v-for="(image, index) in images" :key="index">
         <img
           :src="image.src"
           :alt="image.alt"
-          class="w-[90%] h-full lg:object-cover lg:w-[50%] lg:h-full"
+          class="h-full w-[90%] lg:h-full lg:w-[50%] lg:object-cover"
         />
       </Slide>
     </Carousel>
@@ -29,9 +29,9 @@
   </div>
 </template>
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from "vue";
-import "vue3-carousel/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import { computed, onMounted, ref } from 'vue';
+import 'vue3-carousel/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 const currentSlide = ref(0);
 const screenWidth = ref(window.innerWidth);
 const _LG = 1024;
@@ -50,7 +50,7 @@ const galleryConfig = computed(() => {
   return {
     itemsToShow: 1,
     wrapAround: true,
-    slideEffect: "fade",
+    slideEffect: 'fade',
     mouseDrag: false,
     touchDrag: true,
     height: screenWidth.value > _LG ? 600 : 350,
@@ -59,11 +59,11 @@ const galleryConfig = computed(() => {
 });
 
 const images = ref([
-  { src: "img/image1.webp", alt: "Flower PC" },
-  { src: "img/image2.webp", alt: "Flower Zoom 1" },
-  { src: "img/image3.webp", alt: "Flower Zoom 2" },
-  { src: "img/image4.webp", alt: "Flower Zoom 3" },
-  { src: "img/image5.webp", alt: "Flower Zoom 4" },
+  { src: 'img/image1.webp', alt: 'Flower PC' },
+  { src: 'img/image2.webp', alt: 'Flower Zoom 1' },
+  { src: 'img/image3.webp', alt: 'Flower Zoom 2' },
+  { src: 'img/image4.webp', alt: 'Flower Zoom 3' },
+  { src: 'img/image5.webp', alt: 'Flower Zoom 4' },
 ]);
 
 const slideTo = (nextSlide) => (currentSlide.value = nextSlide);
@@ -73,8 +73,7 @@ const updateDimensions = () => {
 };
 
 onMounted(() => {
-  console.log("se monto");
-  window.addEventListener("resize", updateDimensions);
+  window.addEventListener('resize', updateDimensions);
 });
 </script>
 <style scoped>
