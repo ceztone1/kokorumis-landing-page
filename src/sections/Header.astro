@@ -4,7 +4,8 @@ import Logo from '../../public/img/logo.webp';
 ---
 
 <header
-  class="fixed flex w-full items-center justify-center gap-4 bg-white/30 py-1"
+  id="main-header"
+  class="fixed flex w-full items-center justify-center gap-4 py-1"
 >
   <Image
     class="kokorumis rounded-full"
@@ -16,12 +17,16 @@ import Logo from '../../public/img/logo.webp';
   />
   <h1 class="kokorumis font-Chewy text-4xl text-fontColor">Kokorumis</h1>
 </header>
-
+<script type="module" src="/js/scroll.js"></script>
 <style>
   header {
     top: 0;
     left: 0;
     z-index: 99999;
+    background-color: transparent;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
   .kokorumis {
     animation-name: bounceInTop;
@@ -78,5 +83,8 @@ import Logo from '../../public/img/logo.webp';
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out;
     }
+  }
+  .scrolled {
+    background-color: white;
   }
 </style>
