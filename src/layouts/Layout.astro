@@ -1,5 +1,5 @@
 ---
-import Header from '../sections/Header.vue';
+import Header from '../sections/Header.astro';
 ---
 
 <!doctype html>
@@ -18,7 +18,7 @@ import Header from '../sections/Header.vue';
     />
   </head>
   <body class="bodyColor relative">
-    <Header client:load />
+    <Header />
     <slot />
   </body>
 </html>
