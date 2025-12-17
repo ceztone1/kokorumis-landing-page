@@ -1,15 +1,18 @@
 ---
 import { Image } from 'astro:assets';
-import star from '../../public/img/star.png';
-import melody from '../../public/img/melody.webp';
-import Carousel from '../components/Carousel.vue';
+import calciferImage from '@assets/img/calcifer.webp';
+import flower1 from '@assets/img/flower.webp';
+import flower2 from '@assets/img/flower2.webp';
+import flowerpot from '@assets/img/image1.webp';
+import melody from '@assets/img/melody.webp';
+import logo from '@assets/img/logo.webp';
 ---
 
 <section
-  class="mt-[100px] flex flex-col-reverse items-center justify-around gap-4 py-4 lg:flex-row"
+  class="mt-[5vh] flex flex-col-reverse items-center justify-around gap-4 py-4 lg:flex-row"
 >
-  <Carousel client:only class="w-full md:w-[50%]" />
-  <div class="lading-container relative w-full md:w-[50%]">
+  <!--
+ <div class="lading-container relative w-full md:w-[50%]">
     <Image
       class="rigth-[-80px] star-movement absolute top-[-50px] w-[60px] rounded-2xl sm:w-[100px]"
       loading="eager"
@@ -33,7 +36,7 @@ import Carousel from '../components/Carousel.vue';
       class="mt-20 flex flex-col items-center justify-center gap-4 md:hidden"
     >
       <button
-        class="before:ease hover:before:-translate-x- relative h-12 w-40 overflow-hidden rounded-full border border-fontColor bg-fontColor font-Chewy text-sm text-white shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-fontColor hover:before:-translate-x-40"
+        class="before:ease hover:before:-translate-x- relative h-12 w-20 overflow-hidden rounded-full border border-fontColor bg-fontColor font-Chewy text-sm text-white shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-fontColor hover:before:-translate-x-40"
       >
         Cotizador de precio
       </button>
@@ -44,6 +47,81 @@ import Carousel from '../components/Carousel.vue';
       >
         Cotizador de precio
       </button>
+    </div>
+  </div>-->
+  <div
+    class="m-4 grid w-full animate-[appear_0.6s_ease-out_forwards] grid-cols-2 grid-rows-[30vh_30vh_30vh] gap-4 rounded-2xl bg-white/30 p-4 sm:grid-cols-3"
+  >
+    <div
+      class="relative col-span-2 col-start-1 row-span-1 row-start-1 flex items-center justify-center sm:col-span-1 sm:col-start-2"
+    >
+      <p
+        class="appear flex flex-col items-center justify-center gap-4 text-fontColor"
+      >
+        <span class="font-Chewy text-5xl text-fontColor md:text-8xl"
+          >Make it posible!</span
+        >
+        <span class="font-Chewy text-4xl text-fontColor">Crafts & crochet</span>
+      </p>
+    </div>
+    <div class="relative row-span-2 flex items-start">
+      <Image
+        class="reveal h-full w-full rounded-2xl object-cover"
+        src={logo}
+        alt="A description of my image."
+      />
+    </div>
+    <div class="relative row-span-1 row-start-[-1] flex sm:row-span-2">
+      <Image
+        class="reveal h-full w-full rounded-2xl object-cover"
+        src={melody}
+        alt="A description of my image."
+      />
+    </div>
+    <div class="relative row-span-2 flex">
+      <Image
+        class="reveal h-full w-full rounded-2xl object-cover"
+        src={calciferImage}
+        alt="A description of my image."
+      />
+    </div>
+    <div class="relative row-span-2 flex sm:row-span-1">
+      <Image
+        class="reveal h-full w-full rounded-2xl object-cover"
+        src={flower1}
+        alt="A description of my image."
+      />
+    </div>
+    <div
+      class="relative col-start-2 row-span-1 row-start-2 flex sm:col-start-3 sm:row-start-3"
+    >
+      <Image
+        class="reveal h-full w-full rounded-2xl object-cover"
+        src={flower2}
+        alt="A description of my image."
+      />
+    </div>
+
+    <div class="relativeflex">
+      <Image
+        class="reveal h-full w-full rounded-2xl object-cover"
+        src={flower2}
+        alt="A description of my image."
+      />
+    </div>
+    <div class="relativeflex">
+      <Image
+        class="reveal h-full w-full rounded-2xl object-cover"
+        src={flower2}
+        alt="A description of my image."
+      />
+    </div>
+    <div class="relative flex">
+      <Image
+        class="reveal h-full w-full rounded-2xl object-cover"
+        src={flower2}
+        alt="A description of my image."
+      />
     </div>
   </div>
 
@@ -82,14 +160,32 @@ import Carousel from '../components/Carousel.vue';
     @keyframes appear {
       0% {
         opacity: 0;
-        -webkit-transform: translateY(-100px);
-        transform: translateY(-100px);
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
       }
       100% {
         opacity: 1;
         -webkit-transform: translateY(0);
         transform: translateY(0);
       }
+    }
+    @keyframes show {
+      from {
+        opacity: 0;
+        scale: 90%;
+      }
+      to {
+        opacity: 1;
+        scale: 100%;
+      }
+    }
+    .reveal {
+      view-timeline-name: --reveal;
+      animation-name: show;
+      animation-fill-mode: both;
+
+      animation-timeline: --reveal;
+      animation-range: entry 25% cover 50%;
     }
   </style>
 </section>

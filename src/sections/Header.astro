@@ -1,28 +1,25 @@
 ---
-import Image from 'astro/components/Image.astro';
-import Logo from '../../public/img/logo.webp';
+import { Image } from 'astro:assets';
+import Logo from '@assets/img/logo.webp';
 ---
 
 <header
-  class="fixed flex w-full items-center justify-center gap-4 bg-white/30 py-1"
+  class="fixed flex w-full items-center justify-center gap-4 py-1"
+  id="header"
 >
   <Image
     class="kokorumis rounded-full"
     src={Logo}
     alt="Kokorumis logo"
-    width="60"
-    height="60"
-    loading={'eager'}
+    width={50}
+    height={50}
   />
-  <h1 class="kokorumis font-Chewy text-4xl text-fontColor">Kokorumis</h1>
+  <h1 class="kokorumis disableOpacity font-Chewy text-3xl text-fontColor">
+    Kokorumis
+  </h1>
 </header>
 
 <style>
-  header {
-    top: 0;
-    left: 0;
-    z-index: 99999;
-  }
   .kokorumis {
     animation-name: bounceInTop;
     animation-duration: 1s;
@@ -79,4 +76,70 @@ import Logo from '../../public/img/logo.webp';
       animation-timing-function: ease-out;
     }
   }
+
+  @keyframes fadeBackground {
+    from {
+      background-color: rgba(255, 255, 255, 1); /* Opaco al inicio */
+    }
+    to {
+      background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+      ); /* Más transparente al bajar */
+    }
+  }
+
+  header {
+    background-color: rgba(255, 255, 255, 1); /* Color inicial */
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    transition: background-color 0.3s ease-out; /* Para el fallback JS */
+  }
+
+  /* Solo para navegadores que soportan scroll-driven animations */
+  @supports (animation-timeline: scroll()) {
+    header {
+      animation-name: fadeBackground;
+      animation-fill-mode: both;
+      animation-timeline: scroll();
+      animation-range: 0 20%;
+      animation-timing-function: ease-out;
+    }
+  }
+
+  /* Clase para el fallback de JavaScript */
+  header.transparent {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
 </style>
+
+<script>
+  // Solo ejecuta el fallback si no hay soporte para scroll-driven animations
+  if (!CSS.supports('animation-timeline: scroll()')) {
+    const header = document.getElementById('header');
+    const scrollThreshold = window.innerHeight * 0.01; // 20% de la altura
+
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY;
+
+          if (scrolled > scrollThreshold) {
+            header?.classList.add('transparent');
+          } else {
+            header?.classList.remove('transparent');
+          }
+
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    });
+  }
+</script>
